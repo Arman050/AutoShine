@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- verrouille le zoom pour éviter que l'utilisateur change l'échelle -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>Excellence Cleaning & Detailing — Nettoyage Auto & Maison à Barvaux</title>
   <meta name="description" content="Nettoyage professionnel à Barvaux (Durbuy) : detailing auto, shampoing sièges/tapis, dépoussiérage en profondeur, nettoyage maisons/appartements, canapés, matelas, vitres, fin de chantier et Airbnb." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +12,7 @@
   <style>
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;color:#e5e7eb;background:#0f172a;line-height:1.6}
+    body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;color:#e5e7eb;background:#0f172a;line-height:1.6; overflow-x:hidden}
     h1,h2,h3{font-family:Poppins,Inter,sans-serif;margin:0 0 .5rem}
     h1{font-size:clamp(28px,4vw,48px)}
     h2{font-size:clamp(22px,3vw,32px)}
@@ -23,20 +24,29 @@
     .btn{display:inline-block;background:#22d3ee;color:#04121a;padding:12px 18px;border-radius:12px;font-weight:700}
     .btn:hover{filter:brightness(1.05)}
     .chip{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;margin-bottom:10px}
-    .card{background:#111b34;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;text-align:center;display: flex; flex-direction: column;}
-    .price{font-weight:800; font-size:22px;}
-    .card .price{margin-top:auto; margin-bottom:0;}
-    .card .clean {margin-bottom: 2rem;}
-    .card select option {background: #111b34; color: #e5e7eb;}
-    .card img{height: 200px; width: 100%; margin-bottom: 2rem;}
+
+    .card{background:#111b34;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;text-align:center;display:flex;flex-direction:column}
+    .price{font-weight:800;font-size:22px;margin:10px 0}
+    .card .price{margin-top:auto;margin-bottom:0}
+    .card .clean{margin-bottom:2rem}
+    .card select option{background:#111b34;color:#e5e7eb}
+    .card img{height:200px;width:100%;margin-bottom:2rem;object-fit:cover}
+
     section{padding:64px 0}
+
     .nav{position:sticky;top:0;z-index:20;background:rgba(8,13,27,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand img{width:110px;border-radius:10px}
+    .brand img{width:110px;border-radius:10px;max-width:100%;height:auto}
     .menu{display:flex;gap:16px;align-items:center}
     .hamb{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#e5e7eb;border-radius:10px;padding:8px 10px}
-    @media(max-width:900px){.menu{display:none}.hamb{display:block}.menu.open{display:flex;position:absolute;left:12px;right:12px;top:58px;flex-direction:column;background:#0b1328;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px}.menu.open a{padding:8px}}
+    @media(max-width:900px){
+      .menu{display:none}
+      .hamb{display:block}
+      .menu.open{display:flex;position:absolute;left:12px;right:12px;top:58px;flex-direction:column;background:#0b1328;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px}
+      .menu.open a{padding:8px}
+    }
+
     .hero{position:relative;min-height:72vh;display:grid;align-items:end}
     .hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
     .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,22,.1) 0%, rgba(5,10,22,.85) 70%, #0f172a 100%)}
@@ -44,118 +54,61 @@
     .hero .content{padding:80px 0 36px}
     .hero h1 span{background:linear-gradient(135deg,#22d3ee,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 
-    /* Contact */
-/* ===== CONTACT FORM (section #contact) ===== */
+    /* grilles fluides */
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
 
-/* Boîte du formulaire */
-#contact .max-w-xl{
-  background:#111b34;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;
-  padding:24px;
-  color:#e5e7eb;
-  box-shadow:0 6px 18px rgba(0,0,0,.25);
-}
+    /* ===== CONTACT FORM (section #contact) ===== */
+    #contact .max-w-xl{
+      background:#111b34;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;color:#e5e7eb;box-shadow:0 6px 18px rgba(0,0,0,.25)
+    }
+    #contact h1,#contact h2,#contact h3{color:#e5e7eb}
+    #contact p{color:#a8b3cf}
+    #contact input,#contact textarea,#contact select{
+      width:100%;background:rgba(255,255,255,.03);color:#e5e7eb;border:1.5px solid rgba(255,255,255,.18);border-radius:10px;padding:12px 14px;transition:border-color .2s, box-shadow .2s, background .2s
+    }
+    #contact input::placeholder,#contact textarea::placeholder{color:#9aa4bd}
+    #contact input:focus,#contact textarea:focus,#contact select:focus{
+      outline:0;border-color:#22d3ee;box-shadow:0 0 0 3px rgba(34,211,238,.2);background:rgba(255,255,255,.05)
+    }
+    #contact label{display:block;margin:0 0 6px;color:#cbd5e1;font-size:14px}
+    #contact button[type="submit"]{
+      width:100%;background:#22d3ee;color:#04121a;border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;transition:filter .15s, transform .04s
+    }
+    #contact button[type="submit"]:hover{filter:brightness(1.05)}
+    #contact button[type="submit"]:active{transform:translateY(1px)}
+    #contact .empty-feedback,#contact .invalid-feedback{display:none;color:#ef4444}
+    #contact .was-validated :placeholder-shown:invalid ~ .empty-feedback{display:block}
+    #contact .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback{display:block}
+    #contact .is-invalid,#contact .was-validated :invalid{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.18)}
+    #contact #result{margin-top:6px}
+    #contact #result.text-green-500{color:#22c55e}
+    #contact #result.text-red-500{color:#ef4444}
+    #contact #result.text-gray-500{color:#9ca3af}
+    #contact .flex{display:flex;gap:16px;flex-wrap:wrap}
+    #contact .mb-6{margin-bottom:24px}
+    #contact .space-x-4{column-gap:16px}
+    #contact .w-full{width:100%}
+    #contact .md\:w-1\/2{width:100%}
+    @media(min-width:900px){
+      #contact .md\:w-1\/2{width:calc(50% - 8px)}
+    }
+    #contact .mx-auto{margin-left:auto;margin-right:auto}
+    #contact .my-10{margin-top:40px;margin-bottom:40px}
+    #contact .bg-white{background:#111b34!important}
+    #contact .text-gray-700,#contact .text-gray-600,#contact .text-gray-400{color:#cbd5e1!important}
+    #contact .dark\:text-gray-200,#contact .dark\:text-gray-400{color:#a8b3cf!important}
+    #contact .rounded-md{border-radius:12px}
+    #contact .shadow-sm{box-shadow:0 6px 18px rgba(0,0,0,.25)}
+    #contact .min-h-screen{min-height:auto}
 
-/* Titres / textes */
-#contact h1,#contact h2,#contact h3{color:#e5e7eb}
-#contact p{color:#a8b3cf}
-
-/* Champs */
-#contact input,
-#contact textarea,
-#contact select{
-  width:100%;
-  background:rgba(255,255,255,.03);
-  color:#e5e7eb;
-  border:1.5px solid rgba(255,255,255,.18);
-  border-radius:10px;
-  padding:12px 14px;
-  transition:border-color .2s, box-shadow .2s, background .2s;
-}
-#contact input::placeholder,
-#contact textarea::placeholder{color:#9aa4bd}
-
-#contact input:focus,
-#contact textarea:focus,
-#contact select:focus{
-  outline:0;
-  border-color:#22d3ee;
-  box-shadow:0 0 0 3px rgba(34,211,238,.2);
-  background:rgba(255,255,255,.05);
-}
-
-/* Labels */
-#contact label{display:block; margin:0 0 6px; color:#cbd5e1; font-size:14px}
-
-/* Bouton envoyer */
-#contact button[type="submit"]{
-  width:100%;
-  background:#22d3ee;
-  color:#04121a;
-  border:0;
-  border-radius:12px;
-  padding:12px 16px;
-  font-weight:700;
-  cursor:pointer;
-  transition:filter .15s, transform .04s;
-}
-#contact button[type="submit"]:hover{filter:brightness(1.05)}
-#contact button[type="submit"]:active{transform:translateY(1px)}
-
-/* Messages de feedback */
-#contact .empty-feedback,
-#contact .invalid-feedback{display:none; color:#ef4444}
-#contact .was-validated :placeholder-shown:invalid ~ .empty-feedback{display:block}
-#contact .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback{display:block}
-
-/* États d'erreur */
-#contact .is-invalid,
-#contact .was-validated :invalid{
-  border-color:#ef4444 !important;
-  box-shadow:0 0 0 3px rgba(239,68,68,.18);
-}
-
-/* Résultat (JS change les classes) */
-#contact #result{margin-top:6px}
-#contact #result.text-green-500{color:#22c55e}
-#contact #result.text-red-500{color:#ef4444}
-#contact #result.text-gray-500{color:#9ca3af}
-
-/* ——— Mise en page utilitaire (remplace les classes Tailwind présentes) ——— */
-#contact .flex{display:flex; gap:16px; flex-wrap:wrap}
-#contact .mb-6{margin-bottom:24px}
-#contact .space-x-4{column-gap:16px}
-#contact .w-full{width:100%}
-#contact .md\:w-1\/2{width:100%}
-@media(min-width:900px){
-  #contact .md\:w-1\/2{width:calc(50% - 8px)}
-}
-#contact .mx-auto{margin-left:auto; margin-right:auto}
-#contact .my-10{margin-top:40px; margin-bottom:40px}
-
-/* Fond clair forcé -> neutralisé pour thème sombre */
-#contact .bg-white{background:#111b34 !important}
-#contact .text-gray-700,
-#contact .text-gray-600,
-#contact .text-gray-400{color:#cbd5e1 !important}
-#contact .dark\:text-gray-200,
-#contact .dark\:text-gray-400{color:#a8b3cf !important}
-
-/* Arrondis et ombres des wrappers */
-#contact .rounded-md{border-radius:12px}
-#contact .shadow-sm{box-shadow:0 6px 18px rgba(0,0,0,.25)}
-
-
-    @media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+    /* Gallerie masonry (non utilisée pour le slider) */
     .masonry{columns:3 300px;column-gap:12px}
     .masonry figure{break-inside:avoid;margin:0 0 12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+
     ul.clean{list-style:none;padding:0;margin:0;display:grid;gap:8px}
     ul.clean li{display:flex;align-items:center;gap:8px}
-    .price{font-weight:800;font-size:22px;margin: 10px 0}
     .mini{opacity:.85;font-size:14px}
     form{display:grid;gap:10px}
     input,textarea,select{padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#e5e7eb}
@@ -164,46 +117,28 @@
     footer{background:#0b1224;border-top:1px solid rgba(255,255,255,.08);padding:30px 0}
     .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
     @media(max-width:900px){.foot{grid-template-columns:1fr}}
-      /* CAROUSEL 3-À-LA-FOIS */
+
+    /* CAROUSEL 3-À-LA-FOIS */
     .slider{position:relative}
     .slider-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px}
     .slider-track::-webkit-scrollbar{height:0}
     .slide{flex:0 0 calc((100% - 24px)/3);scroll-snap-align:start}
-    .slide figure {
-      aspect-ratio: 1/1;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    .slide img.contain {
-      object-fit: contain;
-      background: #0b1224; /* fond pour combler */
-    }
-
-    .lightbox{
-    position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-    background:rgba(0,0,0,.92); z-index:9999; cursor:zoom-out;
-    }
-    .lightbox.open{display:flex;}
-    .lightbox img{max-width:95vw; max-height:90vh; object-fit:contain; border-radius:10px}
-    .lightbox .cap{position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
-      color:#e5e7eb; font:500 14px/1.4 Inter,system-ui; background:rgba(0,0,0,.4);
-      padding:6px 10px; border-radius:8px}
-
-
+    .slide figure{aspect-ratio:1/1;overflow:hidden;border-radius:12px}
+    .slide img{width:100%;height:100%;object-fit:cover;object-position:center}
+    .slide img.contain{object-fit:contain;background:#0b1224}
 
     .arrow{position:absolute;top:50%;transform:translateY(-50%);border:1px solid rgba(255,255,255,.2);background:rgba(15,23,42,.7);backdrop-filter:blur(6px);color:#e5e7eb;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;cursor:pointer}
     .arrow:hover{filter:brightness(1.1)}
     .arrow:disabled{opacity:.4;cursor:not-allowed}
-    .arrow.prev{left:-120px}
-    .arrow.next{right:-120px}
+    .arrow.prev{left:8px}
+    .arrow.next{right:8px}
     @media(max-width:900px){.slide{flex:0 0 calc((100% - 12px)/2)}}
     @media(max-width:600px){.slide{flex:0 0 100%}}
+
+    /* hero plus compact sur mobile */
+    @media (max-width:600px){ .hero{min-height:56vh} }
+    /* images de cards adaptatives mobile */
+    @media (max-width:700px){ .card img{height:auto;max-height:240px;object-fit:cover} }
   </style>
 </head>
 <body>
@@ -220,6 +155,7 @@
       </div>
     </div>
   </nav>
+
   <header id="accueil" class="hero">
     <div class="hero-bg" aria-hidden="true">
       <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=3840&auto=format&fit=crop" alt="Intérieur maison propre et lumineux (4K)">
@@ -234,97 +170,73 @@
       </div>
     </div>
   </header>
-  <!-- <section id="services-auto">
+
+  <!-- Services Auto -->
+  <section id="services-auto">
     <div class="container">
       <h2>Services Auto</h2>
       <div class="grid-3" style="margin-top:12px">
         <div class="card">
-          <img src="img/coffre apres.png" alt="Nettoyage tapis voiture">
-          <h3>Intérieur profond</h3>
-          <p>Shampoing sièges & tapis, vapeur antibactérienne, plastiques/cuir, vitres.</p>
-          <p class="price">à partir de 89€</p>
+          <img src="img/detailing_interior.jpg" alt="Nettoyage intérieur light">
+          <h3>Intérieur light</h3>
+          <p>Entretien rapide et propre pour l’usage quotidien.</p>
+          <ul class="clean">
+            <li>✔ Aspirateur complet (sols, tapis, coffre)</li>
+            <li>✔ Dépoussiérage plastiques & aérateurs</li>
+            <li>✔ Vitres intérieures</li>
+            <li>✔ Parfum d’habitacle léger</li>
+          </ul>
+          <p class="price">à partir de 49€</p>
         </div>
+
         <div class="card">
-          <img src="img/detailing_exterior.jpg" alt="Coffre avant nettoyage">
-          <h3>Detailing extérieur</h3>
-          <p>Prélavage mousse, lavage à la main, jantes/pneus, décontamination, protection hydrophobe.</p>
+          <img src="img/coffre apres.png" alt="Shampooinage sièges et tapis">
+          <h3>Intérieur profond</h3>
+          <p>Rénovation hygiénique avec extraction en profondeur.</p>
+          <ul class="clean">
+            <li>✔ Shampooinage sièges & tapis (injecteur-extracteur)</li>
+            <li>✔ Plastiques/console nettoyés & protégés</li>
+            <li>✔ Vitres intérieures, seuils & détails</li>
+          </ul>
+          <p class="price">à partir de 89€ (SUV 119€)</p>
+        </div>
+
+        <div class="card">
+          <img src="img/detailing_exterior.jpg" alt="Detailing extérieur">
+          <h3>Extérieur luxe</h3>
+          <p>Process pro pour une carrosserie nette et protégée.</p>
+          <ul class="clean">
+            <li>✔ Prélavage mousse + lavage main</li>
+            <li>✔ Jantes, pneus, passages de roues</li>
+          </ul>
           <p class="price">à partir de 69€</p>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
-  <!-- Remplace ton bloc Auto par ceci -->
-<section id="services-auto">
-  <div class="container">
-    <h2>Services Auto</h2>
-    <div class="grid-3" style="margin-top:12px">
-
-      <!-- Intérieur LIGHT -->
-      <div class="card">
-        <img src="img/detailing_interior.jpg" alt="Nettoyage intérieur light">
-        <h3>Intérieur light</h3>
-        <p>Entretien rapide et propre pour l’usage quotidien.</p>
-        <ul class="clean">
-          <li>✔ Aspirateur complet (sols, tapis, coffre)</li>
-          <li>✔ Dépoussiérage plastiques & aérateurs</li>
-          <li>✔ Vitres intérieures</li>
-          <li>✔ Parfum d’habitacle léger</li>
-        </ul>
-        <p class="price">à partir de 49€</p>
-      </div>
-
-      <!-- Intérieur PROFOND -->
-      <div class="card">
-        <img src="img/coffre apres.png" alt="Shampooinage sièges et tapis">
-        <h3>Intérieur profond</h3>
-        <p>Rénovation hygiénique avec extraction en profondeur.</p>
-        <ul class="clean">
-          <li>✔ Shampooinage sièges & tapis (injecteur-extracteur)</li>
-          <!-- <li>✔ Vapeur antibactérienne & neutralisation des odeurs</li> -->
-          <li>✔ Plastiques/console nettoyés & protégés</li>
-          <li>✔ Vitres intérieures, seuils & détails</li>
-        </ul>
-        <p class="price">à partir de 89€ (SUV 119€)</p>
-      </div>
-
-      <!-- Extérieur LUXE -->
-      <div class="card">
-        <img src="img/detailing_exterior.jpg" alt="Detailing extérieur">
-        <h3>Extérieur luxe</h3>
-        <p>Process pro pour une carrosserie nette et protégée.</p>
-        <ul class="clean">
-          <li>✔ Prélavage mousse + lavage main</li>
-          <li>✔ Jantes, pneus, passages de roues</li>
-          <!-- <li>✔ Décontamination ferreuse/goudron</li>
-          <li>✔ Protection hydrophobe (cire/SiO₂)</li> -->
-        </ul>
-        <p class="price">à partir de 69€</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+  <!-- Services Maison -->
   <section id="services-maison">
     <div class="container">
       <h2>Services Maison</h2>
       <div class="grid-3" style="margin-top:12px">
         <div class="card">
           <img src="img/canape_shampouineuse.jpeg" alt="Nettoyage canapé en profondeur">
-          <h3 style="margin-top: 15px;">Shampoing tissus</h3>
+          <h3 style="margin-top:15px;">Shampoing tissus</h3>
           <p>Canapés, tapis, moquettes, matelas — extraction en profondeur.</p>
           <p class="price">à partir de 39€/place</p>
         </div>
         <div class="card">
           <img src="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?q=80&w=1200&auto=format&fit=crop" alt="Salon nettoyé et dépoussiéré">
-          <h3 style="margin-top: 15px;">Dépoussiérage & sols</h3>
+          <h3 style="margin-top:15px;">Dépoussiérage & sols</h3>
           <p>Aspiration complète, serpillière, désinfection points de contact.</p>
           <p class="price">à partir de 29€/h</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Galerie -->
   <section id="galerie">
     <div class="container">
       <h2>Galerie — Avant / Après</h2>
@@ -340,136 +252,106 @@
       </div>
     </div>
   </section>
+
+  <!-- Contact -->
   <section id="contact">
-    <!-- <div class="container">
-      <h2>Contact & Devis</h2>
-      <div class="grid-2" style="margin-top:12px">
-        <div class="card">
-          <form id="contactForm">
-            <input type="text" name="nom" placeholder="Votre nom" required>
-            <input type="tel" name="tel" placeholder="Téléphone" required>
-            <select name="service" required>
-              <option value="" disabled selected>Choisir un service</option>
-              <option>Auto — Intérieur</option>
-              <option>Auto — Extérieur</option>
-              <option>Maison — Shampoing tissus</option>
-              <option>Maison — Dépoussiérage & sols</option>
-            </select>
-            <textarea name="message" placeholder="Détaillez le véhicule/pièces à nettoyer, adresse, disponibilités…"></textarea>
-            <button class="btn" type="submit">Envoyer la demande</button>
-            <p class="mini">Ou appelez directement: <a href="tel:+32467127501">04 67 12 75 01</a></p>
-          </form>
-        </div>
-        <div class="card">
-          <h3>AutoShine Cleaning & Detailing</h3>
-          <p>Route de Marche 20, 6940 Barvaux‑sur‑Ourthe</p>
-          <p>Disponible tous les jours !</p>
-          <iframe class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Barvaux-sur-Ourthe&output=embed"></iframe>
-        </div>
-      </div>
-    </div> -->
-  
-        
     <div class="flex items-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div class="container mx-auto">
         <div class="max-w-xl mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
           <div class="text-center">
-            <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">
-              Contactez-Nous
-            </h1>
-            <p class="text-gray-400 dark:text-gray-400">
-             Veuillez remplir le formulaire ci-dessous pour nous envoyer un message.
-            </p>
-      </div>
-      <div class="m-7">
-        <form action="https://api.web3forms.com/submit" method="POST" id="form" class="needs-validation" novalidate>
-          <input type="hidden" name="access_key" value="07c695eb-c6f8-42d6-a404-aeebaf58d226" />
-          <input type="hidden" name="subject" value="New Submission from Web3Forms" />
-          <input type="checkbox" name="botcheck" id="" style="display: none;" />
-
-          <div class="flex mb-6 space-x-4">
-            <div class="w-full md:w-1/2">
-              <label for="fname" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Prénom</label>
-              <input type="text" name="name" id="first_name" placeholder="John" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
-              <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-                Veuillez entrer votre prénom.
-              </div>
-            </div>
-            <div class="w-full md:w-1/2">
-              <label for="lname" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Nom</label>
-              <input type="text" name="last_name" id="lname" placeholder="Doe" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
-              <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-                Veuillez entrer votre nom.
-              </div>
-            </div>
+            <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Contactez-Nous</h1>
+            <p class="text-gray-400 dark:text-gray-400">Veuillez remplir le formulaire ci-dessous pour nous envoyer un message.</p>
           </div>
+          <div class="m-7">
+            <form action="https://api.web3forms.com/submit" method="POST" id="form" class="needs-validation" novalidate>
+              <input type="hidden" name="access_key" value="07c695eb-c6f8-42d6-a404-aeebaf58d226" />
+              <input type="hidden" name="subject" value="New Submission from Web3Forms" />
+              <input type="checkbox" name="botcheck" style="display:none;" />
 
-          <div class="flex mb-6 space-x-4">
-            <div class="w-full md:w-1/2">
-              <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
-              <input type="email" name="email" id="email" placeholder="you@company.com" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
-              <div class="empty-feedback text-red-400 text-sm mt-1">
-                Veuillez entrer votre email.
+              <div class="flex mb-6 space-x-4">
+                <div class="w-full md:w-1/2">
+                  <label for="first_name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Prénom</label>
+                  <input type="text" name="name" id="first_name" placeholder="John" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
+                  <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Veuillez entrer votre prénom.</div>
+                </div>
+                <div class="w-full md:w-1/2">
+                  <label for="lname" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Nom</label>
+                  <input type="text" name="last_name" id="lname" placeholder="Doe" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
+                  <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Veuillez entrer votre nom.</div>
+                </div>
               </div>
-              <div class="invalid-feedback text-red-400 text-sm mt-1">
-                Veuillez entrer un email valide.
+
+              <div class="flex mb-6 space-x-4">
+                <div class="w-full md:w-1/2">
+                  <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
+                  <input type="email" name="email" id="email" placeholder="you@company.com" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
+                  <div class="empty-feedback text-red-400 text-sm mt-1">Veuillez entrer votre email.</div>
+                  <div class="invalid-feedback text-red-400 text-sm mt-1">Veuillez entrer un email valide.</div>
+                </div>
+
+                <div class="w-full md:w-1/2">
+                  <label for="phone" class="block text-sm mb-2 text-gray-600 dark:text-gray-400">Numéro de téléphone</label>
+                  <input type="number" name="phone" id="phone" placeholder="+32 467 12 75 01" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
+                  <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Veuillez entrer votre numéro de téléphone.</div>
+                </div>
               </div>
-            </div>
 
-            <div class="w-full md:w-1/2">
-              <label for="phone" class="block text-sm mb-2 text-gray-600 dark:text-gray-400">Numéro de téléphone</label>
-              <input type="number" name="phone" id="phone" placeholder="+1 (555) 1234-567" required class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
-
-              <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-                Veuillez entrer votre numéro de téléphone.
+              <div class="mb-6">
+                <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Message</label>
+                <textarea rows="5" name="message" id="message" placeholder="Votre message" class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" required></textarea>
+                <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Veuillez entrer votre message.</div>
               </div>
-            </div>
-          </div>
-          <div class="mb-6">
-            <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Message</label>
 
-            <textarea rows="5" name="message" id="message" placeholder="Your Message" class="w-full px-3 py-2 placeholder-gray-300 border-2 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" required></textarea>
-            <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-              Veuillez entrer votre message.
-            </div>
+              <div class="mb-6">
+                <button type="submit" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Envoyer</button>
+              </div>
+              <p class="text-base text-center text-gray-400" id="result"></p>
+            </form>
           </div>
-          <div class="mb-6">
-            <button type="submit" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">
-              Envoyer
-            </button>
-          </div>
-          <p class="text-base text-center text-gray-400" id="result"></p>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
   </section>
+
   <footer>
     <div class="container foot">
-      <div><div class="brand"></div><p class="mini">© <span id="y"></span> AutoShine — Tous droits réservés.</p></div>
-      <div><h3>Contact</h3><p class="mini">☎ <a href="tel:+32467127501">04 67 12 75 01</a><br>✉ <a href="mailto:autoshine.barvaux@gmail.com">autoshine.barvaux@gmail.com</a></p></div>
-      <div><h3>Réseaux</h3><p class="mini"><a href="https://www.instagram.com/autoshine.barvaux/" target="_blank">Instagram</a> · <a href="https://www.tiktok.com/@autoshine.barvaux" target="_blank">TikTok</a></p></div>
+      <div>
+        <h3>Contact</h3>
+        <p class="mini">☎ <a href="tel:+32467127501">04 67 12 75 01</a><br>✉ <a href="mailto:autoshine.barvaux@gmail.com">autoshine.barvaux@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Réseaux</h3>
+        <p class="mini"><a href="https://www.instagram.com/autoshine.barvaux/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@autoshine.barvaux" target="_blank" rel="noopener">TikTok</a></p>
+      </div>
+      <div>
+        <div class="brand"></div>
+        <p class="mini">© <span id="y"></span> AutoShine — Tous droits réservés.</p>
+      </div>
     </div>
   </footer>
+
   <script>
+    // Menu mobile
     const hamb=document.getElementById('hamb');
     const menu=document.getElementById('menu');
     hamb.addEventListener('click',()=>{const open=menu.classList.toggle('open');hamb.setAttribute('aria-expanded',open?'true':'false');});
+
+    // Année footer
     document.getElementById('y').textContent=new Date().getFullYear();
-    // document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const data=Object.fromEntries(new FormData(this).entries());alert(`Merci ${data.nom}! On vous rappelle vite au ${data.tel}.`);this.reset();});
-    // — Carrousel 3‑images avec flèches
+
+    // — Carrousel 3-images avec flèches (safe)
     (function(){
       const track=document.getElementById('galerieTrack');
-      if(!track) return;
       const prev=document.getElementById('galPrev');
       const next=document.getElementById('galNext');
-      const step=()=>track.parentElement.clientWidth; // on défile d'une « vue »
+      if(!track || !prev || !next) return;
+      const step=()=>track.parentElement.clientWidth;
       const update=()=>{
         const max=track.scrollWidth-track.clientWidth-1;
         prev.disabled=track.scrollLeft<=0;
-        next.disabled=track.scrollLeft>=max;
+        next.disabled=track.scrollLeft>=max || max<=0;
+        const noScroll = max<=0;
+        prev.style.display = next.style.display = noScroll ? 'none' : 'grid';
       };
       prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
       next.addEventListener('click',()=>track.scrollBy({left: step(),behavior:'smooth'}));
@@ -478,79 +360,57 @@
       update();
     })();
 
-    // SCRIPT LIGHTBOX
+    // SCRIPT LIGHTBOX (safe)
     document.addEventListener('DOMContentLoaded', () => {
-    const track  = document.getElementById('galerieTrack');
-    const lb     = document.getElementById('lightbox');
-    const lbImg  = document.getElementById('lightboxImg');
-    const lbCap  = document.getElementById('lightboxCap');
+      const track  = document.getElementById('galerieTrack');
+      const lb     = document.getElementById('lightbox');
+      const lbImg  = document.getElementById('lightboxImg');
+      const lbCap  = document.getElementById('lightboxCap');
+      if (!track || !lb || !lbImg) return;
 
-    if (!track || !lb || !lbImg) return; // évite les null
+      track.addEventListener('click', (e) => {
+        const img = e.target.closest('img');
+        if (!img) return;
+        lbImg.src = img.src;
+        if (lbCap) lbCap.textContent = img.alt || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
 
-    // Ouvrir
-    track.addEventListener('click', (e) => {
-      const img = e.target.closest('img');
-      if (!img) return;
-      lbImg.src = img.src;
-      if (lbCap) lbCap.textContent = img.alt || '';
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      const closeLB = () => {
+        lb.classList.remove('open');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      };
+      lb.addEventListener('click', closeLB);
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
     });
 
-    // Fermer (clic fond + Échap)
-    lb.addEventListener('click', closeLB);
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+    // SCRIPT CONTACT (validation + envoi Web3Forms)
+    (function () {
+      "use strict";
+      const forms = document.querySelectorAll(".needs-validation");
+      const result = document.getElementById("result");
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener("submit", function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault(); event.stopPropagation();
+            const firstInvalid = form.querySelectorAll(":invalid")[0];
+            if (firstInvalid) firstInvalid.focus();
+          } else {
+            const formData = new FormData(form);
+            event.preventDefault(); event.stopPropagation();
+            const object = {};
+            formData.forEach((value, key) => { object[key] = value; });
+            const json = JSON.stringify(object);
+            result.style.display = "block";
+            result.innerHTML = "Veuillez patienter...";
 
-    function closeLB() {
-      lb.classList.remove('open');
-      lbImg.src = '';
-      document.body.style.overflow = '';
-    }
-  });
-
-  // SCRIPT CONTACT
-  (function () {
-  "use strict";
-  /*
-   * Form Validation
-   */
-
-  // Fetch all the forms we want to apply custom validation styles to
-  const forms = document.querySelectorAll(".needs-validation");
-  const result = document.getElementById("result");
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-
-          form.querySelectorAll(":invalid")[0].focus();
-        } else {
-          /*
-           * Form Submission using fetch()
-           */
-
-          const formData = new FormData(form);
-          event.preventDefault();
-          event.stopPropagation();
-          const object = {};
-          formData.forEach((value, key) => {
-            object[key] = value;
-          });
-          const json = JSON.stringify(object);
-          result.innerHTML = "Please wait...";
-
-          fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json"
-            },
-            body: json
-          })
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: json
+            })
             .then(async (response) => {
               let json = await response.json();
               if (response.status == 200) {
@@ -558,38 +418,33 @@
                 result.classList.remove("text-gray-500");
                 result.classList.add("text-green-500");
               } else {
-                console.log(response);
-                result.innerHTML = json.message;
+                result.innerHTML = json.message || "Erreur d’envoi.";
                 result.classList.remove("text-gray-500");
                 result.classList.add("text-red-500");
               }
             })
             .catch((error) => {
               console.log(error);
-              result.innerHTML = "Something went wrong!";
+              result.innerHTML = "Une erreur est survenue.";
+              result.classList.add("text-red-500");
             })
             .then(function () {
               form.reset();
               form.classList.remove("was-validated");
-              setTimeout(() => {
-                result.style.display = "none";
-              }, 5000);
+              setTimeout(() => { result.style.display = "none"; }, 5000);
             });
-        }
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
-
+          }
+          form.classList.add("was-validated");
+        }, false);
+      });
+    })();
   </script>
 
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <img id="lightboxImg" alt="">
     <span id="lightboxCap" class="cap"></span>
   </div>
-  
 </body>
 </html>
+
