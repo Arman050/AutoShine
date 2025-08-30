@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Excellence Detailing — Nettoyage & Detailing Auto à Barvaux</title>
+  <meta name="description" content="Service pro de nettoyage et detailing auto à Barvaux (Durbuy). Lavage extérieur, rénovation intérieure, polissage, protection céramique." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="logo_noir.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    /* === STYLE SIMPLE, PUR HTML/CSS, SANS FRAMEWORK === */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;color:#e5e7eb;background:#0f172a;line-height:1.6}
+    h1,h2,h3{font-family:Poppins,Inter,sans-serif;margin:0 0 .5rem}
+    h1{font-size:clamp(28px,4vw,48px)}
+    h2{font-size:clamp(22px,3vw,32px)}
+    h3{font-size:18px}
+    p{margin:.25rem 0 .75rem}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+    .btn{display:inline-block;background:#22d3ee;color:#04121a;padding:12px 18px;border-radius:12px;font-weight:700}
+    .btn:hover{filter:brightness(1.05)}
+    .card{background:#111b34;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}
+    section{padding:64px 0}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:20;background:rgba(8,13,27,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#22d3ee,#60a5fa);display:grid;place-items:center;color:#04121a;font-weight:900}
+    .menu{display:flex;gap:16px;align-items:center}
+    .hamb{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#e5e7eb;border-radius:10px;padding:8px 10px}
+    @media(max-width:900px){
+      .menu{display:none}
+      .hamb{display:block}
+      .menu.open{display:flex;position:absolute;left:12px;right:12px;top:58px;flex-direction:column;background:#0b1328;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px}
+      .menu.open a{padding:8px}
+    }
+
+    /* HERO */
+    .hero{position:relative;min-height:72vh;display:grid;align-items:end}
+    .hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+    .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,22,.1) 0%, rgba(5,10,22,.85) 70%, #0f172a 100%)}
+    .hero img{width:100%;height:100%;object-fit:cover}
+    .hero .content{padding:80px 0 36px}
+    .chip{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;margin-bottom:10px}
+    .hero h1 span{background:linear-gradient(135deg,#22d3ee,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    /* GRIDS */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    /* GALLERY */
+    .masonry{columns:3 300px;column-gap:12px}
+    .masonry figure{break-inside:avoid;margin:0 0 12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+
+    /* LISTES */
+    ul.clean{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    ul.clean li{display:flex;align-items:center;gap:8px}
+    .price{font-weight:800;font-size:22px}
+    .mini{opacity:.85;font-size:14px}
+
+    /* CONTACT */
+    form{display:grid;gap:10px}
+    input,textarea,select{padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#e5e7eb}
+    #options_contact {color:white; background-color: #111b34;}
+    textarea{min-height:120px}
+    .map{width:100%;min-height:340px;border:0;border-radius:12px}
+
+    /* FOOTER */
+    footer{background:#0b1224;border-top:1px solid rgba(255,255,255,.08);padding:30px 0}
+    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+    @media(max-width:900px){.foot{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="#accueil"><img src="logo.png" style="width: 100px;border-radius: 10px;">
+      <button id="hamb" class="hamb" aria-expanded="false" aria-controls="menu">Menu</button>
+      <div id="menu" class="menu">
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact" class="btn">Devis</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="accueil" class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=3840&auto=format&fit=crop" alt="Voiture sportive brillante après detailing (image 4K)">
+    </div>
+    <div class="container content">
+      <span class="chip">🚗 Detailing & nettoyage haut de gamme à Barvaux</span>
+      <h1>On redonne à votre <span>voiture</span> son éclat.</h1>
+      <p class="mini">Lavage extérieur, rénovation intérieur, polissage, protection céramique et préparation vente.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contact">Obtenir un devis</a>
+        <a class="btn" style="background:#60a5fa" href="tel:+32470123456">📞 0470 12 34 56</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>Intérieur premium</h3>
+          <p>Nettoyage vapeur, shampouinage sièges/tapis, plastiques, cuir, vitres.</p>
+          <ul class="clean">
+            <li>✔ Dépoussiérage en profondeur</li>
+            <li>✔ Désinfection vapeur</li>
+            <li>✔ Traitement cuir / textile</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Extérieur luxe</h3>
+          <p>Prélavage, lavage mains, jantes, pneus, protection hydrophobe.</p>
+          <ul class="clean">
+            <li>✔ Lavage deux seaux</li>
+            <li>✔ Décontamination</li>
+            <li>✔ Protection spray/cire</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Correction & Céramique</h3>
+          <p>Polissage 1 à 2 passes, lustrage, pose protection céramique.</p>
+          <ul class="clean">
+            <li>✔ Swirls/légères micro‑rayures</li>
+            <li>✔ Brillance miroir</li>
+            <li>✔ Protection 1–3 ans</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
+  <section id="tarifs">
+    <div class="container">
+      <h2>Tarifs indicatifs</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>Forfait Intérieur</h3>
+          <p class="price">à partir de 89€</p>
+          <p class="mini">Citadine — SUV sur devis</p>
+          <a class="btn" href="#contact">Réserver</a>
+        </div>
+        <div class="card">
+          <h3>Forfait Extérieur</h3>
+          <p class="price">à partir de 69€</p>
+          <p class="mini">Avec protection hydrophobe</p>
+          <a class="btn" href="#contact">Réserver</a>
+        </div>
+        <div class="card">
+          <h3>Polissage + Céramique</h3>
+          <p class="price">sur devis</p>
+          <p class="mini">Inspection peinture incluse</p>
+          <a class="btn" href="#contact">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie">
+    <div class="container">
+      <h2>Galerie (4K)</h2>
+      <div class="masonry" style="margin-top:12px">
+        <figure><img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=3840&auto=format&fit=crop" alt="Détail jante après nettoyage"/></figure>
+        <figure><img src="https://images.unsplash.com/photo-1515923162049-901f24e28e22?q=80&w=3840&auto=format&fit=crop" alt="Intérieur cuir nettoyé"/></figure>
+        <figure><img src="https://images.unsplash.com/photo-1541443131876-b6f1d5f46b92?q=80&w=3840&auto=format&fit=crop" alt="Carrosserie brillante"/></figure>
+        <figure><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=3840&auto=format&fit=crop" alt="Polissage en cours"/></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section id="avis">
+    <div class="container">
+      <h2>Avis clients</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card"><p>★ ★ ★ ★ ★ — Travail impeccable, ma Golf n'a jamais été aussi propre.</p><p class="mini">— L., Durbuy</p></div>
+        <div class="card"><p>★ ★ ★ ★ ★ — Très pro et ponctuel. Je recommande pour la céramique.</p><p class="mini">— M., Barvaux</p></div>
+        <div class="card"><p>★ ★ ★ ★ ★ — Résultat showroom, top!</p><p class="mini">— C., Marche</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact & Devis</h2>
+      <div class="grid-2" style="margin-top:12px">
+        <div class="card">
+          <form id="contactForm">
+            <input type="text" name="nom" placeholder="Votre nom" required>
+            <input type="tel" name="tel" placeholder="Téléphone" required>
+            <select name="service" required>
+              <option value="" disabled selected>Choisir un service</option>
+              <option id="options_contact">Intérieur premium</option>
+              <option id="options_contact">Extérieur luxe</option>
+              <option id="options_contact">Polissage + Céramique</option>
+            </select>
+            <textarea name="message" placeholder="Votre message (modèle, dispo…)"></textarea>
+            <button class="btn" type="submit">Envoyer la demande</button>
+            <p class="mini">Ou appelez directement: <a href="tel:+32470123456">0470 12 34 56</a></p>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Barvaux Detailing</h3>
+          <p>Rue de Barvaux 1, 6940 Barvaux‑sur‑Ourthe</p>
+          <p>Du lundi au vendredi 9h–18h, samedi 10h–16h</p>
+          <iframe class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Barvaux-sur-Ourthe&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand"><img src="logo.png" style="width: 100px;border-radius: 10px;"></div>
+        <p class="mini">© <span id="y"></span> — Tous droits réservés.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p class="mini">☎ <a href="tel:+32470123456">0470 12 34 56</a><br>✉ <a href="mailto:contact@barvaux-detailing.be">contact@barvaux-detailing.be</a></p>
+      </div>
+      <div>
+        <h3>Réseaux</h3>
+        <p class="mini"><a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // JS simple (menu mobile + faux envoi du formulaire)
+    const hamb = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    hamb.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(this).entries());
+      alert(`Merci ${data.nom}! On vous rappelle vite au ${data.tel}.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
